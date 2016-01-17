@@ -60,22 +60,31 @@ void CnewcalculatorDlg::OnBnClickedM2()
 void CnewcalculatorDlg::OnBnClickedM2sub()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	mflag = 2;
 	UpdateData(true);
 	m_temp1 = m_temp1 - _ttof(m_s1);
+	m_s1.Format(L"%lf", m_temp1);
+	rigdel(m_s1);
+	UpdateData(false);
 }
 
 
 void CnewcalculatorDlg::OnBnClickedM2add()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	mflag = 1;
 	UpdateData(true);
 	m_temp1 = m_temp1 + _ttof(m_s1);
+	m_s1.Format(L"%lf", m_temp1);
+	rigdel(m_s1);
+	UpdateData(false);
 }
 
 
 void CnewcalculatorDlg::OnBnClickedM2c()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	mflag = 3;
 	m_temp1 = 0;
 }
  
@@ -84,6 +93,7 @@ void CnewcalculatorDlg::set(double m_t)
 	m_temp1 = m_t;
 	m_str1.Format(L"%lf", m_temp1);
 	m_s1 = m_str1; 
+	rigdel(m_s1);
 }
 
 void CnewcalculatorDlg::rigdel(CString &m_str1)
@@ -97,4 +107,5 @@ void CnewcalculatorDlg::rigdel(CString &m_str1)
 		m_str1.Delete(m_str1.GetLength() - 1, 1);
 	}
 };
+
 

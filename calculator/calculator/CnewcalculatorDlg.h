@@ -29,4 +29,5 @@ public:
 	void rigdel(CString &m_s1);
 	CString m_s1, m_s2, m_s3, m_str1;
 	double m_temp1;
+	int mflag;
 };

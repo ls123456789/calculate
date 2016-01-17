@@ -56,7 +56,10 @@ CcalculatorDlg::CcalculatorDlg(CWnd* pParent /*=NULL*/)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 	flag = 0;
-	m_temp = 0;
+	mflag = 0;
+	m_temp1 = NULL;
+	m_temp2 = NULL;
+	m_temp3 = NULL;
 }
 
 void CcalculatorDlg::DoDataExchange(CDataExchange* pDX)
@@ -99,6 +102,7 @@ BEGIN_MESSAGE_MAP(CcalculatorDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_M1C, &CcalculatorDlg::OnBnClickedM1c)
 	ON_BN_CLICKED(IDC_M1R, &CcalculatorDlg::OnBnClickedM1r)
 	ON_WM_KEYUP()
+	ON_BN_CLICKED(IDC_M1S, &CcalculatorDlg::OnBnClickedM1s)
 END_MESSAGE_MAP()
 
 
@@ -644,7 +648,10 @@ void CcalculatorDlg::OnBnClickedM1()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CnewcalculatorDlg m_dlg4;
-	m_dlg4.set(m_temp);
+	if (!mflag == 0 )
+	{
+		m_dlg4.set(m_temp1);
+	}
 	ShowWindow(SW_HIDE); // 隐藏当前窗口
 	m_dlg4.DoModal();
 	ExitProcess(0);
@@ -654,33 +661,52 @@ void CcalculatorDlg::OnBnClickedM1()
 void CcalculatorDlg::OnBnClickedM1add()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	mflag = 1;
 	UpdateData(true);
-	m_temp = m_temp +  _ttof(m_str);
+	m_temp1 = m_temp1 +  _ttof(m_str);
 }
 
 
 void CcalculatorDlg::OnBnClickedM1sub()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	mflag = 2;
 	UpdateData(true);
-	m_temp = m_temp - _ttof(m_str);
+	m_temp1 = m_temp1 - _ttof(m_str);
 }
 
 
 void CcalculatorDlg::OnBnClickedM1c()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	m_temp = 0;
+	mflag = 3;
+	m_temp1 = 0;
 }
 
 
 void CcalculatorDlg::OnBnClickedM1r()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	m_str.Format(L"%lf", m_temp);
+	mflag = 4;
+	m_str.Format(L"%lf", m_temp1);
 	rigdel(m_str);
 	UpdateData(false);
 }
+
+void CcalculatorDlg::OnBnClickedM1s()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	UpdateData(true);
+	if (!m_temp1==NULL)
+	{
+		m_temp1 = _ttof(m_str);
+	}
+	else
+	{
+
+	}
+}
+
 
 //***********************************************
 //*              此段为M系类储存                *
@@ -715,3 +741,5 @@ void CcalculatorDlg::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	CDialogEx::OnKeyUp(nChar, nRepCnt, nFlags);
 }
+
+

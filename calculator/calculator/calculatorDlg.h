@@ -31,8 +31,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CString m_str;
-	int flag;
-	double temp,m_temp;
+	int flag,mflag;
+	double temp,m_temp1,m_temp2,m_temp3;
 	afx_msg void OnBnClicked1();
 	afx_msg void OnBnClicked2();
 	afx_msg void OnBnClicked3();
@@ -63,4 +63,5 @@ public:
 	afx_msg void OnBnClickedM1c();
 	afx_msg void OnBnClickedM1r();
 	afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnBnClickedM1s();
 };
